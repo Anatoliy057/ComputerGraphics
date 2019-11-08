@@ -1,6 +1,6 @@
 package stud.task.drawer.ellipse;
 
-import stud.task.domain.Point;
+import stud.task.converter.ScreenPoint;
 import stud.task.drawer.pixel.PixelDrawer;
 
 import java.awt.*;
@@ -11,7 +11,7 @@ public class BresArc extends BresEllipse implements AcrDrawer {
 
     private boolean most;
     private int x0, y0;
-    private Point first, last;
+    private ScreenPoint first, last;
 
     public BresArc(PixelDrawer pd) {
         setPixelDrawer(pd);
@@ -40,10 +40,10 @@ public class BresArc extends BresEllipse implements AcrDrawer {
         super.draw(x0, y0, a, b, c);
     }
 
-    protected Point findInter(int a, int b, double k, int direct, int dx, int dy) {
+    protected ScreenPoint findInter(int a, int b, double k, int direct, int dx, int dy) {
         double x = direct*(a*b/Math.sqrt(b*b + a*a*k*k));
         double y = k*x;
-        return new Point((int) x+dx, (int) y+dy);
+        return new ScreenPoint((int) x+dx, (int) y+dy);
     }
 
     protected void mirror(int x, int y, int dx, int dy, Color c) {
@@ -56,8 +56,8 @@ public class BresArc extends BresEllipse implements AcrDrawer {
     }
 
     private void pixel(int x, int y, Color c) {
-        int errorFirst = (first.getX()-x0)*(y - y0) - (first.getY()-y0)*(x - x0);
-        int errorLast = (last.getX()-x0)*(y - y0) - (last.getY()-y0)*(x - x0);
+        int errorFirst = (first.getI()-x0)*(y - y0) - (first.getJ()-y0)*(x - x0);
+        int errorLast = (last.getI()-x0)*(y - y0) - (last.getJ()-y0)*(x - x0);
         if (most) {
             if (errorFirst > 0 || errorLast < 0) pd.pixel(x, y, c);
         } else {

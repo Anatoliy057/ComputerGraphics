@@ -1,6 +1,6 @@
 package stud.task.drawer.ellipse;
 
-import stud.task.domain.Point;
+import stud.task.converter.ScreenPoint;
 import stud.task.drawer.line.LineDrawer;
 
 import java.awt.*;
@@ -12,7 +12,7 @@ public abstract class BresPie extends BresEllipse implements PieDrawer {
     protected LineDrawer ld;
     protected boolean most;
     protected int x0, y0;
-    protected Point first, last;
+    protected ScreenPoint first, last;
 
     @Override
     public void setLineDrawer(LineDrawer ld) {
@@ -35,16 +35,16 @@ public abstract class BresPie extends BresEllipse implements PieDrawer {
                 (angle2 - angle1) > PI;
 
         first = findInter(a, b, k1, direct1, x0, y0);
-        ld.draw(x0, y0, first.getX(), first.getY(), c);
+        ld.draw(x0, y0, first.getI(), first.getJ(), c);
         last = findInter(a, b, k2, direct2, x0, y0);
-        ld.draw(x0, y0, last.getX(), last.getY(), c);
+        ld.draw(x0, y0, last.getI(), last.getJ(), c);
 
         super.draw(x0, y0, a, b, c);
     }
 
-    protected Point findInter(int a, int b, double k, int direct, int dx, int dy) {
+    protected ScreenPoint findInter(int a, int b, double k, int direct, int dx, int dy) {
         double x = direct*(a*b/Math.sqrt(b*b + a*a*k*k));
         double y = k*x;
-        return new Point((int) x+dx, (int) y+dy);
+        return new ScreenPoint((int) x+dx, (int) y+dy);
     }
 }

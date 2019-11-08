@@ -25,8 +25,8 @@ public class FillBresPie extends BresPie {
     }
 
     private void pixel(int x, int y, Color c) {
-        int eStart = (first.getX()-x0)*(y - y0) - (first.getY()-y0)*(x - x0);
-        int eEnd = (last.getX()-x0)*(y - y0) - (last.getY()-y0)*(x - x0);
+        int eStart = (first.getI()-x0)*(y - y0) - (first.getJ()-y0)*(x - x0);
+        int eEnd = (last.getI()-x0)*(y - y0) - (last.getJ()-y0)*(x - x0);
         if (most) {
             if (eStart > 0 || eEnd < 0) pd.pixel(x, y, c);
         } else {

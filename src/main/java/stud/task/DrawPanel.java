@@ -1,11 +1,13 @@
 package stud.task;
 
+import stud.task.converter.ScreenPoint;
 import stud.task.drawer.ellipse.AcrDrawer;
 import stud.task.drawer.ellipse.BresArc;
 import stud.task.drawer.line.BresLine;
 import stud.task.drawer.line.DDALine;
 import stud.task.drawer.line.LineDrawer;
 import stud.task.drawer.line.WuLine;
+import stud.task.drawer.line.BezierLine;
 import stud.task.drawer.pixel.BufferPixelDrawer;
 import stud.task.drawer.pixel.PixelDrawer;
 import stud.task.node.Line;
@@ -38,11 +40,19 @@ public class DrawPanel extends JPanel implements MouseMotionListener, KeyListene
                 getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
         PixelDrawer pd = new BufferPixelDrawer(bi);
         ld.setPixelDrawer(pd);
-        Line line = new Line(getWidth()/2, getHeight()/2, cx, cy, c, ld);
+        Line line = new Line(getWidth() / 2, getHeight() / 2, cx, cy, c, ld);
         line.draw();
 
         AcrDrawer ed = new BresArc(pd);
-        ed.draw(getWidth()/2, getHeight()/2, 100, 100,  3*Math.PI/4,Math.PI/4, c);
+        ed.draw(getWidth() / 2, getHeight() / 2, 100, 100, 3 * Math.PI / 4, Math.PI / 4, c);
+
+        BezierLine bezierLine = new BezierLine();
+        bezierLine.draw(ld, 50, c,
+                new ScreenPoint(0, 0),
+                new ScreenPoint(30, 30),
+                new ScreenPoint(60, 0),
+                new ScreenPoint(200, 0)
+        );
         g.drawImage(bi, 0, 0, null);
     }
 
