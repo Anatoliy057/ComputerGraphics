@@ -16,6 +16,10 @@ public class DDALine extends AbstractLineDrawer {
 
     @Override
     public void draw(int x1, int y1, int x2, int y2, Color c) {
+        if (x1 == x2 && y1 == y2) {
+            pd.pixel(x1, y1, c);
+            return;
+        }
         double x = x1, y = y1;
         double dx = x2 - x1;
         double dy = y2 - y1;

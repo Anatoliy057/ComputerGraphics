@@ -30,8 +30,8 @@ public class BlankBresPie extends BresPie implements PieDrawer {
     }
 
     private void pixel(int x, int y, Color c) {
-        int errorFirst = (first.getX()-x0)*(y - y0) - (first.getY()-y0)*(x - x0);
-        int errorLast = (last.getX()-x0)*(y - y0) - (last.getY()-y0)*(x - x0);
+        int errorFirst = (first.getI()-x0)*(y - y0) - (first.getJ()-y0)*(x - x0);
+        int errorLast = (last.getI()-x0)*(y - y0) - (last.getJ()-y0)*(x - x0);
         if (most) {
             if (errorFirst > 0 || errorLast < 0) pd.pixel(x, y, c);
         } else {

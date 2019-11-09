@@ -22,6 +22,13 @@ public class ScreenConverter {
         return new ScreenPoint(i, j);
     }
 
+    public ScreenPoint s2s(ScreenPoint p) {
+        int i = r2sX(p.getI());
+        int j = r2sY(p.getJ());
+
+        return new ScreenPoint(i, j);
+    }
+
     public Vector2 s2r(ScreenPoint p) {
         double x = s2rI(p.getI());
         double y = s2rJ(p.getJ());
@@ -34,7 +41,7 @@ public class ScreenConverter {
     }
 
     public int r2sY(double y) {
-        return (int) Math.round((yr = y) * hs / hr);
+        return (int) Math.round((yr - y) * hs / hr);
     }
 
     public double s2rI(int i) {

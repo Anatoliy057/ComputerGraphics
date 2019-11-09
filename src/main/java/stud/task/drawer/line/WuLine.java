@@ -16,6 +16,10 @@ public class WuLine extends AbstractLineDrawer {
 
     @Override
     public void draw(int x1, int y1, int x2, int y2, Color c) {
+        if (x1 == x2 && y1 == y2) {
+            pd.pixel(x1, y1, c);
+            return;
+        }
         int dx, dy, e;
         int x = Math.abs(x1), y = Math.abs(y1);
         int incX = (int) Math.signum((dx = x2-x1));
